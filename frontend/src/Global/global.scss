@@ -7,6 +7,10 @@
 
 }
 
+.hover-menu:hover {
+    cursor: pointer;
+    background-color: rgba(128, 128, 128, 0.219);
+}
 //Border Bottom
 .border-bt {
     border-bottom: solid rgba(0, 0, 0, 0.079) 1px;
