@@ -1,0 +1,26 @@
+//Hover effect
+.hover:hover {
+
+    cursor: pointer;
+    opacity: 50%;
+    transition: 0.1s;
+
+}
+
+//Border Bottom
+.border-bt {
+    border-bottom: solid rgba(0, 0, 0, 0.079) 1px;
+}
+
+//App.js Grid Settings
+.main-container{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.side-top-menu {
+    display: flex;
+    justify-content: space-between;
+}
+

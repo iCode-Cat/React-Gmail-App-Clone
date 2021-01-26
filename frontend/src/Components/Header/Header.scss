@@ -1,13 +1,13 @@
 //Navbar container
 .navbar {
     display: flex;
-    background: turquoise;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    gap: 30px;
-    padding: 1rem 3.2rem;
-
+    gap: 20px;
+    padding: 0.8rem 3.2rem;
+  
+    color: #6D6C6C;
     //Hamburger Menu
 
     .hamburger-icon {
@@ -17,7 +17,7 @@
     //Gmail logo
     .logo {
        
-        padding-right: 7rem;
+        padding-right: 6rem;
         
     }
    
@@ -27,13 +27,14 @@
         
     display: flex;
     width: 100%;
-    max-width: 650px;
+    max-width: 720px;
 
     input {
         width: 100%;
-        height: 4.6rem;
+        padding-left: 2rem;
+        height: 4.8rem;
         border-radius: 5px;
-        background: rgba(255, 255, 255, 0.466);
+        background: rgba(0, 0, 0, 0.050)
         
     }
 
@@ -44,10 +45,10 @@
         flex: 1 0;
         display: flex;
         align-items: center;
-        gap: 30px;
+        gap: 20px;
         font-size: 2rem;
         justify-content: flex-end;
-        margin-right: -3rem;
+        margin-right: -3.5rem;
 
         
 
