@@ -4,14 +4,21 @@ import SIDE_MENU from './side-menu-data'
 
 
 
-const SideMenu = () => {
+const SideMenu = ({setLoop, loop}) => {
 
     const [sideMenu, setSideMenuData] = useState(SIDE_MENU)
+
+    //Generate message pop
+    const loopHandler = () =>  {
+        
+      setLoop(oldArray => [...loop, loop.length])
+      
+  }
     console.log(sideMenu);
 
    return <section className="side-menu-container ">
        
-        <button className="compose"> <i class="fas fa-plus"></i> Compose</button>
+        <div className="compose" onClick={loopHandler}> <i className="fas fa-plus"></i> Compose</div>
 
       <div className="menu-options-container border-bt">
       {sideMenu.map(menu => {
