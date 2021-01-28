@@ -7,6 +7,7 @@
 
 //General container
 .message-card {
+    margin-right: 1rem;
   width: 500px;
     padding: 0 1rem;  
     border-top-left-radius: 15px;
@@ -18,14 +19,24 @@
     
     header {
             margin: 0 -1rem;
-        p {
-            
-            font-size: 1.6rem;
-            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             background: #404040;
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;
+            padding: 1.2rem 2rem;
+            
+        p {
             color: #fff;
+            font-size: 1.6rem;
+        }
+
+        //fa icons
+        i {
+            color: #B2B2B2;
+            font-size: 1.4rem;
+            cursor: pointer;
         }
     }
 
@@ -37,14 +48,19 @@
             padding: 1rem 0;
             
         }
+
+        textarea {
+            padding: 1rem 0;    
+            font-family: Roboto;
+        }
+        
     }
     
     //Submit button and styling
     footer {
            padding: 1.6rem 0;
         button {
-            width: 121px;
-            height: 45px;
+            padding: 1rem 3.5rem;
             background: #1A73E8;
             color: #fff;
             border-radius: 5px;
