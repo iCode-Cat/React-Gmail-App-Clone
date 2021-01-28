@@ -4,3 +4,52 @@
     right: 0 ;
     bottom: 0;
 }
+
+//General container
+.message-card {
+  width: 500px;
+    padding: 0 1rem;  
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    display: flex;
+        flex-direction: column;
+        box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.103);
+   
+    
+    header {
+            margin: 0 -1rem;
+        p {
+            
+            font-size: 1.6rem;
+            padding: 1.2rem 2rem;
+            background: #404040;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            color: #fff;
+        }
+    }
+
+    //textarea, subject, to 
+    section {
+        display: flex;
+    flex-direction: column;
+        input {
+            padding: 1rem 0;
+            
+        }
+    }
+    
+    //Submit button and styling
+    footer {
+           padding: 1.6rem 0;
+        button {
+            width: 121px;
+            height: 45px;
+            background: #1A73E8;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    }
+}
+
