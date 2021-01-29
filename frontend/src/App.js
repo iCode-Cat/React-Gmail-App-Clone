@@ -19,7 +19,8 @@ function App() {
  
  
     <Header/>
-    <Message loop={loop} mail={mail} setMail={setMail} />
+    
+    <Message loop={loop} setLoop={setLoop} mail={mail} setMail={setMail} />
     <div className="side-top-menu">
     <SideMenu loop={loop} setLoop={setLoop}/>
     <div className="top-mails-container">

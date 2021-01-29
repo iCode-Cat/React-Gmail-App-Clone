@@ -1,7 +1,7 @@
 import React,{useState, useRef} from 'react';
 import './message.scss'
 
-const Message = ({loop , mail ,setMail}) => {
+const Message = ({loop,setLoop , mail ,setMail}) => {
 
     let receiver = useRef(null)
     let subject = useRef(null)
@@ -22,16 +22,26 @@ const Message = ({loop , mail ,setMail}) => {
         }))
 
     }
+
+
+    //Close popup handler
+    const popupHandler = (id) => {
+
+        
+        const newPopup = loop.filter((loop)=> loop !== id);
+        setLoop(newPopup)
+
+    }
     
 
     return <div className="message-container">
         
         {loop.map((a, index)=>{ return <div className="message-card">
+            
             <header>
                 <p>New Message</p>
-                
                 <div className="card-icons">
-                <i class="fas fa-times"></i>
+                <i className="fas fa-times" onClick={()=>{popupHandler(index)}}></i>
                 </div>
             </header>
             <section className="message-send">

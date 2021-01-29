@@ -11,7 +11,11 @@ const SideMenu = ({setLoop, loop}) => {
     //Generate message pop
     const loopHandler = () =>  {
         
-      setLoop(oldArray => [...loop, loop.length])
+      // setLoop(oldArray => [...loop, loop.length])
+
+      if(loop < 1) {
+         setLoop(oldArray => [0])
+      }
       
   }
     console.log(sideMenu);
