@@ -1,4 +1,5 @@
 import React,{useState, useRef} from 'react';
+import axios from 'axios';
 import './message.scss'
 
 const Message = ({loop,setLoop , mail ,setMail}) => {
@@ -10,17 +11,16 @@ const Message = ({loop,setLoop , mail ,setMail}) => {
     console.log(loop);
     console.log(mail);
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         receiver.current.focus()
         subject.current.focus()
         content.current.focus()
-
-        const {name, value} = e.target;
         setMail((prevStyle) => ({
             ...prevStyle,
             receiver:receiver.current.value, subject:subject.current.value , content:content.current.value, date:Date(), sender:'test@gmail.com', status:'inbox', visited:'none'
         }))
 
+ 
     }
 
 

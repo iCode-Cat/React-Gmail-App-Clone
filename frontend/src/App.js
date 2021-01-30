@@ -1,4 +1,5 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
+import axios from 'axios';
 import './App.css';
 import Header from './Components/Header/Header';
 import Mails from './Components/Mails/Mails';
@@ -7,12 +8,19 @@ import SideMenu from './Components/Side-Menu/SideMenu';
 import TopMenu from './Components/Top-Menu/TopMenu';
 import './Global/global.scss'
 function App() {
+  const [mail, setMail] = useState({ sender:'', receiver:'', subject:'', content:'', date:'', status:'', visited:'none'  });
+  const [loop, setLoop] = useState([]);
 
+  useEffect(()=> {
+   //Save mails 
+   axios.post('http://localhost:8080/mail', mail)
+   .then(res => console.log(res))
+   .catch((err)=>console.log(err))
+   
+    },[mail])
 
   //Generate message pop
-  const [loop, setLoop] = useState([]);
   //Message state
-  const [mail, setMail] = useState({ sender:'', receiver:'', subject:'', content:'', date:'', status:'', visited:'none'  });
 
   return (
     <div className="main-container">
