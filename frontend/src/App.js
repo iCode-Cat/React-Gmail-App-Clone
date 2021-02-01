@@ -8,16 +8,33 @@ import SideMenu from './Components/Side-Menu/SideMenu';
 import TopMenu from './Components/Top-Menu/TopMenu';
 import './Global/global.scss'
 function App() {
+  const [showPost, setShowPost] = useState()
   const [mail, setMail] = useState({ sender:'', receiver:'', subject:'', content:'', date:'', status:'', visited:'none'  });
   const [loop, setLoop] = useState([]);
 
   useEffect(()=> {
-   //Save mails 
-   axios.post('http://localhost:8080/mail', mail)
-   .then(res => console.log(res))
-   .catch((err)=>console.log(err))
+   //Post mails and save to the database
+   const postHandler = async () => {
+    await axios.post('http://localhost:8080/mail', mail)
+    .then(res => console.log(res))
+    .catch((err)=>console.log(err))
+   }
    
+   postHandler()
+  //  callMail()
     },[mail])
+
+
+    //Call mails as soon as page is loaded! 
+    useEffect(() => {
+
+         axios.get('http://localhost:8080/mail')
+        .then(res => {setShowPost(res.data)})
+        .catch((err)=>console.log(err))
+
+    }, [mail])
+   
+    
 
   //Generate message pop
   //Message state
@@ -33,7 +50,8 @@ function App() {
     <SideMenu loop={loop} setLoop={setLoop}/>
     <div className="top-mails-container">
     <TopMenu/>
-    <Mails mail={mail}/>
+    {showPost ? showPost.map((post)=>(<Mails post={post} mail={mail}/>)):''}
+    
    
     </div>
     </div>

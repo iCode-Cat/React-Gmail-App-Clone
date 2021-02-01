@@ -1,14 +1,14 @@
 import React from 'react';
 import './mails.scss'
 
-const Mails = ({mail}) => {
+const Mails = ({post}) => {
 
 
-    if(mail.content) {
+    if(post.content) {
         return <div className="mails-container border-bt">
-        <div className="sender"><strong>{mail.sender}</strong></div>
-        <div className="subject">{mail.subject}</div>
-        <div className="content">{mail.content.slice(0,140) + '...'}</div>
+        <div className="sender"><strong>{post.sender}</strong></div>
+        <div className="subject">{post.subject}</div>
+        <div className="content">{post.content.slice(0,140) + '...'}</div>
     </div>
     } else {
         return ''
