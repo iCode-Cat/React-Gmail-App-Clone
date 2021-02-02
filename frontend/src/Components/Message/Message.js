@@ -2,14 +2,12 @@ import React,{useState, useRef} from 'react';
 import axios from 'axios';
 import './message.scss'
 
-const Message = ({loop,setLoop , mail ,setMail,toogle, setToggle}) => {
+const Message = ({loop,setLoop , mail ,setMail}) => {
 
     let receiver = useRef(null)
     let subject = useRef(null)
     let content = useRef(null)
 
-    console.log(loop);
-    console.log(mail);
 
     const submitHandler = async (e) => {
         receiver.current.focus()
@@ -50,7 +48,7 @@ const Message = ({loop,setLoop , mail ,setMail,toogle, setToggle}) => {
                 <textarea ref={content} placeholder='' name="" id="" cols="60" rows="15" className='send-message border border-bt'></textarea>
             </section>
             <footer>
-                <button onClick={()=>{setToggle(!toogle)}} className="submit" onClick={submitHandler}>Send</button>
+                <button className="submit" onClick={submitHandler}>Send</button>
             </footer>
         </div>
 })}
