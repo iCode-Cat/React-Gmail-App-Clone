@@ -1,10 +1,12 @@
 import React from 'react';
-
+import './login.scss'
 
 const Login = () => {
 
 
-    return <h1>LOGIN PAGE</h1>
+    return <div className="login-container">
+        <button>LOGIN WITH GOOGLE</button>
+    </div>
 
 }
 
