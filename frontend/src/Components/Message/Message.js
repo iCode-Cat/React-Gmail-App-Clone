@@ -2,7 +2,7 @@ import React,{useState, useRef} from 'react';
 import axios from 'axios';
 import './message.scss'
 
-const Message = ({loop,setLoop , mail ,setMail}) => {
+const Message = ({loop,setLoop , mail ,setMail,toogle, setToggle}) => {
 
     let receiver = useRef(null)
     let subject = useRef(null)
@@ -50,7 +50,7 @@ const Message = ({loop,setLoop , mail ,setMail}) => {
                 <textarea ref={content} placeholder='' name="" id="" cols="60" rows="15" className='send-message border border-bt'></textarea>
             </section>
             <footer>
-                <button className="submit" onClick={submitHandler}>Send</button>
+                <button onClick={()=>{setToggle(!toogle)}} className="submit" onClick={submitHandler}>Send</button>
             </footer>
         </div>
 })}

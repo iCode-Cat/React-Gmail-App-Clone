@@ -11,28 +11,38 @@ function App() {
   const [showPost, setShowPost] = useState()
   const [mail, setMail] = useState({ sender:'', receiver:'', subject:'', content:'', date:'', status:'', visited:'none'  });
   const [loop, setLoop] = useState([]);
+  const [toogle, setToogle] = useState(true)
+
+  //Fetch mails
+  const fetchHandler = async () => {
+    await axios.get('http://localhost:8080/mail')
+    .then(res => {setShowPost(res.data)})
+    .catch((err)=>console.log(err))
+   }
+
+   
 
   useEffect(()=> {
+ 
    //Post mails and save to the database
    const postHandler = async () => {
     await axios.post('http://localhost:8080/mail', mail)
     .then(res => console.log(res))
     .catch((err)=>console.log(err))
+    
    }
    
    postHandler()
+   fetchHandler()
   //  callMail()
     },[mail])
 
 
     //Call mails as soon as page is loaded! 
-    useEffect(() => {
+    
 
-         axios.get('http://localhost:8080/mail')
-        .then(res => {setShowPost(res.data)})
-        .catch((err)=>console.log(err))
+         
 
-    }, [mail])
    
     
 
@@ -45,7 +55,7 @@ function App() {
  
     <Header/>
     
-    <Message loop={loop} setLoop={setLoop} mail={mail} setMail={setMail} />
+    <Message toogle={toogle} setToogle={setToogle} loop={loop} setLoop={setLoop} mail={mail} setMail={setMail} />
     <div className="side-top-menu">
     <SideMenu loop={loop} setLoop={setLoop}/>
     <div className="top-mails-container">
