@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 import './App.css';
-import { Route, NavLink, Switch, Router , withRouter  } from 'react-router-dom';
+import { Route, Switch, withRouter  } from 'react-router-dom';
 import Header from './Components/Header/Header';
 import MailLoop from './Components/Mails/MailLoop';
 import Message from './Components/Message/Message';
@@ -10,6 +10,9 @@ import TopMenu from './Components/Top-Menu/TopMenu';
 import './Global/global.scss'
 import SingleMail from './Components/Mails/SingleMail';
 import Login from './Components/Login/Login';
+import { auth } from './Components/Firebase/Firebase';
+
+
 function App(props) {
 
   console.log(props.location.pathname);
@@ -17,7 +20,7 @@ function App(props) {
   const [mail, setMail] = useState({ sender:'', receiver:'', subject:'', content:'', date:'', status:'', visited:'none'  });
   const [loop, setLoop] = useState([]);
   const [singleMail, setSingleMail] = useState();
-
+  const [currentUser, setCurrentUser] = useState(null);
 
   //Fetch mails
   const fetchHandler = async () => {
@@ -36,9 +39,15 @@ function App(props) {
     .catch((err)=>console.log(err))
     
    }
-   postHandler()
+   if(mail.receiver !== ''){postHandler()}
    fetchHandler()
-  //  callMail()
+  //  AUTH
+  //displayName , email, photoURL
+  auth.onAuthStateChanged(user => {
+    setCurrentUser({user})
+    console.log(currentUser);
+  })
+
     },[mail])
 
     //Call mails as soon as page is loaded! 
@@ -48,7 +57,7 @@ function App(props) {
   return (
     <div className="main-container">
     {props.location.pathname !== '/login' ? <div>
-    <Header/>
+    <Header currentUser={currentUser} />
     <Message loop={loop} setLoop={setLoop} mail={mail} setMail={setMail} />
     <div className="side-top-menu">
     <SideMenu loop={loop} setLoop={setLoop}/>

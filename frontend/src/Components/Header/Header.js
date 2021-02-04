@@ -2,8 +2,9 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import './Header.scss';
 
-const Header = () => {
+const Header = ({currentUser}) => {
 
+    if(currentUser){console.log(currentUser.user.photoURL)}
 
     return<header>
 
@@ -16,7 +17,7 @@ const Header = () => {
             <i className="far fa-question-circle hover"></i>
             <i className="fas fa-cog hover"></i>
             <i className="fas fa-grip-horizontal hover"></i>
-            <i className="fas fa-user-circle hover"></i>
+            {currentUser ? <div className="pp-holder"><img className='hover' src={currentUser.user.photoURL} alt=""/></div>:<i className="fas fa-user-circle hover"></i> }
             </div>
             <div className="profile hover"></div>
         </div>
