@@ -2,7 +2,7 @@ import React,{useState, useRef} from 'react';
 import axios from 'axios';
 import './message.scss'
 
-const Message = ({loop,setLoop , mail ,setMail}) => {
+const Message = ({loop,setLoop , mail ,setMail, currentUser}) => {
 
     let receiver = useRef(null)
     let subject = useRef(null)
@@ -15,7 +15,7 @@ const Message = ({loop,setLoop , mail ,setMail}) => {
         content.current.focus()
         setMail((prevStyle) => ({
             ...prevStyle,
-            receiver:receiver.current.value, subject:subject.current.value , content:content.current.value, date:Date(), sender:'test@gmail.com', status:'inbox', visited:'none'
+            receiver:receiver.current.value, subject:subject.current.value ,sender:currentUser.user.email, content:content.current.value, date:Date(), status:'inbox', visited:'none'
         }))
 
  

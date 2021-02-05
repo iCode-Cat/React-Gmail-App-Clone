@@ -4,8 +4,8 @@ import './Header.scss';
 
 const Header = ({currentUser}) => {
 
-    if(currentUser){console.log(currentUser.user.photoURL)}
-
+    if(currentUser){console.log(currentUser.user.email)}
+    
     return<header>
 
 
