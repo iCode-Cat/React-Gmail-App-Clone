@@ -67,7 +67,7 @@ function App(props) {
     <SideMenu loop={loop} setLoop={setLoop}/>
     <div className="top-mails-container">
     <TopMenu/>
-    <BottomMenu/>
+    {props.location.pathname === '/' ? <BottomMenu/> : ''}
     <Switch>
     <Route exact path='/' render={() => (
             <MailLoop
