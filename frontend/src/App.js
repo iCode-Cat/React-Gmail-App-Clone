@@ -18,22 +18,30 @@ function App(props) {
 
   console.log(props.location.pathname);
   const [showPost, setShowPost] = useState()
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null)
   const [mail, setMail] = useState({ sender:'', receiver:'', subject:'', content:'', date:'', status:'', visited:'none'  });
   const [loop, setLoop] = useState([]);
   const [singleMail, setSingleMail] = useState();
 
 
   //Fetch mails
+  
+  
   const fetchHandler = async () => {
-    await axios.get('http://localhost:8080/mail')
+    
+    await axios.post('http://localhost:8080/to', {mail:currentUser.user.email})
     .then(res => {setShowPost(res.data)})
     .catch((err)=>console.log(err))
+   
    }
+   
 
-  
+ 
   useEffect(()=> {
-    fetchHandler()
+   
+      fetchHandler()
+      
+    
    //Post mails and save to the database
    const postHandler = async () => {
     await axios.post('http://localhost:8080/mail', mail)
@@ -60,7 +68,7 @@ function App(props) {
 
   return (
     <div className="main-container">
-    {props.location.pathname !== '/login' ? <div>
+    {currentUser ? props.location.pathname !== '/login' ? <div>
     <Header currentUser={currentUser} />
     <Message currentUser={currentUser} loop={loop} setLoop={setLoop} mail={mail} setMail={setMail} />
     <div className="side-top-menu">
@@ -88,7 +96,7 @@ function App(props) {
     
     </div>
     </div>
-    </div> : <Route exact path='/login' component={Login} /> }
+    </div> : <Route exact path='/login' component={Login} /> : 'loading'}
     
     
     </div>
