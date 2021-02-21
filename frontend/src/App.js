@@ -22,26 +22,29 @@ function App(props) {
   const [mail, setMail] = useState({ sender:'', receiver:'', subject:'', content:'', date:'', status:'', visited:'none'  });
   const [loop, setLoop] = useState([]);
   const [singleMail, setSingleMail] = useState();
-
+  const [sender, setSender] = useState();
+  
 
   //Fetch mails
   
   
-  const fetchHandler = async () => {
+  const fetchHandler = async (sender) => {
     
-    await axios.post('http://localhost:8080/to', {mail:currentUser.user.email})
-    .then(res => {setShowPost(res.data)})
-    .catch((err)=>console.log(err))
-   
+        await axios.post('http://localhost:8080/to', {mail:sender})
+      .then(res => {setShowPost(res.data)})
+      .catch((err)=>console.log(err))
    }
-   
 
- 
+
   useEffect(()=> {
-   
-      fetchHandler()
+    auth.onAuthStateChanged( async user => {
+      setCurrentUser({user})
       
+     
+    })
+
     
+   
    //Post mails and save to the database
    const postHandler = async () => {
     await axios.post('http://localhost:8080/mail', mail)
@@ -49,18 +52,19 @@ function App(props) {
     .catch((err)=>console.log(err))
     
    }
-   if(mail.receiver !== ''){postHandler()
-    fetchHandler()
+
+   if(mail.receiver !== ''){
+     postHandler()
+     fetchHandler(currentUser.user.email)
   }
-   
+  
   //  AUTH
   //displayName , email, photoURL
-  auth.onAuthStateChanged(user => {
-    setCurrentUser({user})
-    console.log(currentUser);
-  })
+ 
 
     },[mail])
+  
+  
 
     //Call mails as soon as page is loaded! 
   //Generate message pop
@@ -70,7 +74,7 @@ function App(props) {
     <div className="main-container">
     {currentUser ? props.location.pathname !== '/login' ? <div>
     <Header currentUser={currentUser} />
-    <Message currentUser={currentUser} loop={loop} setLoop={setLoop} mail={mail} setMail={setMail} />
+    <Message currentUser={currentUser} setSender={setSender} loop={loop} setLoop={setLoop} mail={mail} setMail={setMail} />
     <div className="side-top-menu">
     <SideMenu loop={loop} setLoop={setLoop}/>
     <div className="top-mails-container">

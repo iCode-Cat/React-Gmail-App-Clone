@@ -16,9 +16,8 @@ exports.mail_post = async (req, res) => {
 exports.to_post = async (req, res) => {
 
     const mail = req.body.mail;
-    console.log(mail);
     const find = await Mail.find({receiver:mail})
-    console.log(find);
+    const send = await res.header(200).json(find)
     
  }
 exports.mail_delete = (req, res) => {

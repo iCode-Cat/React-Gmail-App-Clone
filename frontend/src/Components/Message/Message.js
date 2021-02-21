@@ -1,8 +1,8 @@
-import React,{useState, useRef} from 'react';
+import React,{useState, useEffect ,useRef} from 'react';
 import axios from 'axios';
 import './message.scss'
 
-const Message = ({loop,setLoop , mail ,setMail, currentUser}) => {
+const Message = ({loop,setLoop , mail ,setMail, currentUser, setSender}) => {
 
     let receiver = useRef(null)
     let subject = useRef(null)
@@ -21,6 +21,11 @@ const Message = ({loop,setLoop , mail ,setMail, currentUser}) => {
  
     }
 
+    useEffect(() => {
+        setSender(currentUser.user.email)
+       
+    }, [])
+
 
     //Close popup handler
     const popupHandler = (id) => {
@@ -30,6 +35,8 @@ const Message = ({loop,setLoop , mail ,setMail, currentUser}) => {
         setLoop(newPopup)
 
     }
+
+  
     
 
     return <div className="message-container">
