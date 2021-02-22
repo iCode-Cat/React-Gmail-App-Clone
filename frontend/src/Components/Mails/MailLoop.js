@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Mails from './Mails'
 
-const MailLoop = ({showPost,mail,setSingleMail,}) => {
+const MailLoop = ({showPost,mail,setSingleMail}) => {
 
 
     console.log(showPost);

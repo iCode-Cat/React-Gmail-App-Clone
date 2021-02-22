@@ -30,7 +30,7 @@ function App(props) {
   
   const fetchHandler = async (sender) => {
     
-        await axios.post('http://localhost:8080/to', {mail:sender})
+        await axios.post('http://localhost:8080/to', {mail:currentUser.user.email})
       .then(res => {setShowPost(res.data)})
       .catch((err)=>console.log(err))
    }
@@ -55,7 +55,7 @@ function App(props) {
 
    if(mail.receiver !== ''){
      postHandler()
-     fetchHandler(currentUser.user.email)
+     fetchHandler()
   }
   
   //  AUTH
@@ -83,6 +83,7 @@ function App(props) {
     <Switch>
     <Route exact path='/' render={() => (
             <MailLoop
+              onClick={fetchHandler()}
               mail={mail}
               showPost={showPost}
               setSingleMail={setSingleMail}
